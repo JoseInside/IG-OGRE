@@ -4,11 +4,12 @@
 #include "MyApplicationContext.h"
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
-#include "OgreRenderTargetListener.h"
 #include "ObjectMan.h"
+#include "SinbadMan.h"
+#include "PanelMan.h"
 
 class HolaApp :
-	public MyApplicationContext, public OgreBites::InputListener, public Ogre::RenderTargetListener
+  public MyApplicationContext, public OgreBites::InputListener
 {
 public:
   explicit HolaApp() : MyApplicationContext("HolaApp") { };
@@ -23,24 +24,22 @@ protected:
   virtual bool mousePressed(const OgreBites::MouseButtonEvent &  evt);
   virtual bool mouseMoved(const OgreBites::MouseMotionEvent& evt);
   virtual void frameRendered(const Ogre::FrameEvent &  evt);
-  virtual void preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
-  // ocultar el panel y poner luz ambiente
-  virtual void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
-  // restablecer los cambios
-
-
-  static const Ogre::uint32 SELECCIONABLE = 1; // << 0;
-  static const Ogre::uint32 NO_SELECCIONABLE = 0;
 
   Ogre::SceneManager* scnMgr = nullptr;
   OgreBites::TrayManager* trayMgr = nullptr;
-  OgreBites::CameraMan* cameraMgr = nullptr;
   Ogre::SceneNode* lightNode = nullptr;
   Ogre::SceneNode* camNode = nullptr;
+  OgreBites::CameraMan* camMng = nullptr;
   Ogre::RaySceneQuery* rayScnQuery = nullptr;
-  Ogre::Camera* cam;
+  Ogre::Camera *cam = nullptr;
 
-  std::vector<ObjectMan*> objectMan;
+
+  static const Ogre::uint32 MY_QUERY_MASK = 1; // << 0;
+  static const Ogre::uint32 ZERO_QUERY_MASK = 0;
+  bool box = false;
+
+  std::vector<ObjectMan*> vecObjMan;
+
 };
 
 
