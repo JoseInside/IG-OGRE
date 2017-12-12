@@ -1,5 +1,9 @@
 #include "HolaApp.h"
 
+/*
+	PRACTICA 3 - OGRE
+*/
+
 using namespace Ogre;
 
 void HolaApp::frameRendered(const FrameEvent &  evt)
@@ -23,15 +27,6 @@ bool HolaApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 
 bool HolaApp::mousePressed(const OgreBites::MouseButtonEvent &  evt)
 {
-	/*rayScnQuery->setRay(cam->getCameraToViewportRay(
-		evt.x / (Real)mWindow->getViewport(0)->getActualWidth(),
-		evt.y / (Real)cam->getViewport()->getActualHeight()));
-	// coordenadas normalizadas en [0,1]
-	while (it != qryResult.end()/* && …) {
-		if (it->movable->getName() == "entSinbad")
-			it->movable->getParentSceneNode()->translate(10, 10, 10);
-		++it;
-	}*/
 	rayScnQuery->setRay(cam->getCameraToViewportRay(
 		evt.x / (Real)mWindow->getViewport(0)->getActualWidth(),
 		evt.y / (Real)cam->getViewport()->getActualHeight()));
@@ -125,9 +120,6 @@ void HolaApp::setupScene(void)
   addInputListener(camMng);
   camMng->setStyle(OgreBites::CS_ORBIT);
 
-
-
-
   //Sinbad
   Ogre::SceneNode*node = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
   SinbadMan* aux = new SinbadMan(node);
@@ -152,8 +144,6 @@ void HolaApp::setupScene(void)
 	  10, 10, true, 1, 1.0, 1.0, Vector3::UNIT_Y);
   PanelMan* aux2 = new PanelMan(nodePlane, rttTex);
   vecObjMan.push_back(aux2);
-
-
 
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);
