@@ -95,7 +95,7 @@ void HolaApp::setupScene(void)
   Light* light = scnMgr->createLight("Light");
   light->setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y); // !!! opngl <-> dirección a la fuente de luz
   lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-  lightNode->setPosition(0, 100, 0);
+  lightNode->setPosition(0, 100, 50);
   lightNode->attachObject(light);
 
   // also need to tell where we are
@@ -178,7 +178,7 @@ void HolaApp::setupScene(void)
 	  (Real)mWindow->getViewport(0)->getActualWidth(),
 	  (Real)cam->getViewport()->getActualHeight(),
 	  10, 10, true, 1, 1.0, 1.0, Vector3::UNIT_Y);
-  PanelMan* aux2 = new PanelMan(nodePlane, rttTex);
+  PanelMan* aux2 = new PanelMan(nodePlane, rttTex, camNode);
   vecObjMan.push_back(aux2);
 
 

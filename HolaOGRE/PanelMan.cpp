@@ -1,14 +1,15 @@
 #include "PanelMan.h"
 
 using namespace Ogre;
-PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r)
+PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN)
 {
 	node = n;
 	rttTex = r;
+	camNode = camN;
 
 	node->scale(0.3, 0.3, 0.3);
 	node->pitch(Ogre::Degree(-90));
-	node->setPosition(0, -25, -50);
+	//node->setPosition(0, 0, 0); // es mejor mover a sinbad antes que mover el plano, ya que el reflejo se jode
 
 	// camref
 	camRef = n->getCreator()->createCamera("RefCam");
@@ -18,23 +19,20 @@ PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r)
 
 
 	camRef->setNearClipDistance(1);
-	camRef->setFarClipDistance(10000);
+	camRef->setFarClipDistance(1000);
 	camRef->setAutoAspectRatio(true);
 
-	n->attachObject(camRef);
-	//n->attachObject(n->getCreator()->getCamera("Cam"));
-
-
-
+	camNode->attachObject(camRef);
+	
 
 	 ent = n->getCreator()->createEntity("entFondo", "mFondo");
 	
 	 // material del plano
 	MyApplicationContext::addInputListener(list);
-	/*ent->getSubEntity(0)->getMaterial()->
+	ent->getSubEntity(0)->getMaterial()->
 		getTechnique(0)->getPass(0) ->
-		createTextureUnitState("RustedMetal.jpg");*/
-	ent->getSubEntity(0)->setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		createTextureUnitState("RustedMetal.jpg");
+	//ent->getSubEntity(0)->setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	node->attachObject(ent);
 
 	// Añadimos un puerto de vista al RenderTarget con la nueva cámara
@@ -43,7 +41,7 @@ PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r)
 	v->setClearEveryFrame(true);
 	v->setBackgroundColour(ColourValue::Black);
 
-	//setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	
 	// Añadimos la nueva textura (reflejo) al material del panel
 	TextureUnitState* t = ent->getSubEntity(0)->getMaterial()->
 		getTechnique(0)->getPass(0)->
