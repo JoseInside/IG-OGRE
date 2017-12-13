@@ -11,17 +11,22 @@ public:
 	bool mousePicking(const OgreBites::MouseButtonEvent& evt) { return true; }
 	void frameRendered(const Ogre::FrameEvent & evt);
 private:
+	
 	OgreBites::InputListener* list = new OgreBites::InputListener();
 	Ogre::SceneNode*node;
 	Ogre::Entity* ent;
 	Ogre::Entity* ent2;
-	Ogre::Entity* ent3;
-	Ogre::AnimationState* animState;
+	Ogre::AnimationState* animState;	//MOVER PIERNAS
+	Ogre::AnimationState* animState2;	//ANDAR
+	Ogre::Animation* animation;
 	
-	void WalkingAnimation();
+	void WalkingAnimation(Ogre::NodeAnimationTrack * track);
+	
 	float duracion = 4.0f;
-	Ogre::Vector3 keyframePos = { 0, 0, 0 };
-	float tamDesplazamiento = 2.0f;
+	float tamDesplazamiento = 160.0f;
+	Ogre::Real longitudPaso = duracion / 4.0;
+	Ogre::Vector3 keyframePos;
+	Ogre::Vector3 escalado;
 };
 
 #endif

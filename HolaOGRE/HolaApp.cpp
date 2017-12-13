@@ -126,39 +126,6 @@ void HolaApp::setupScene(void)
   Ogre::SceneNode*node = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
   SinbadMan* aux = new SinbadMan(node);
   vecObjMan.push_back(aux);
-  /*
-  float duracion = 4.0f;
-  Ogre::Vector3 keyframePos = { 0, 0, 0 };
-  float tamDesplazamiento = 2.0f;
-  
-  //WalkingAnimation
-  Animation * animation = scnMgr->createAnimation("animKnot", duracion);
-  NodeAnimationTrack * track = animation->createNodeTrack(0);
-  track->setAssociatedNode(node);
-
-  Real longitudPaso = duracion / 4.0;
-
-
-  TransformKeyFrame * kf;; // 5 keyFrames: origen(0), arriba, origen, abajo, origen(4)
-  kf = track->createNodeKeyFrame(longitudPaso * 0); // Keyframe 0: origen.
-  kf->setTranslate(keyframePos); // Origen: Vector3
-
-  kf = track->createNodeKeyFrame(longitudPaso * 1); // Keyframe 1: arriba.
-  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento;
-  kf->setTranslate(keyframePos); // Arriba
-  // Keyframe 2: origen. ….
-  kf = track->createNodeKeyFrame(longitudPaso * 3); // Keyframe 3: abajo.
-  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento * -2;
-  kf->setTranslate(keyframePos); // Abajo
-  kf = track->createNodeKeyFrame(longitudPaso * 4); // Keyframe 4: origen.
-  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento;
-  kf->setTranslate(keyframePos); // Origen.
-
-  AnimationState * animationState = scnMgr->createAnimationState("animKnot");
-  animationState->setLoop(true);
-  animation->setInterpolationMode(Ogre::Animation::IM_SPLINE);
-  animationState->setEnabled(true);
-  */
 
 
   //Textura del plano (reflejo)
@@ -189,12 +156,5 @@ void HolaApp::setupScene(void)
 
   
 
-
-}
-
-
-void HolaApp::WalkingAnimation(){
-
-	
 
 }
