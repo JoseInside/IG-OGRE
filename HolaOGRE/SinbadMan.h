@@ -17,6 +17,11 @@ private:
 	Ogre::Entity* ent2;
 	Ogre::Entity* ent3;
 	Ogre::AnimationState* animState;
+	
+	void WalkingAnimation();
+	float duracion = 4.0f;
+	Ogre::Vector3 keyframePos = { 0, 0, 0 };
+	float tamDesplazamiento = 2.0f;
 };
 
 #endif

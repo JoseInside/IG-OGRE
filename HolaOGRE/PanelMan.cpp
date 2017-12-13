@@ -10,8 +10,6 @@ PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r)
 	node->pitch(Ogre::Degree(-90));
 	node->setPosition(0, -25, -50);
 
-
-
 	// camref
 	camRef = n->getCreator()->createCamera("RefCam");
 

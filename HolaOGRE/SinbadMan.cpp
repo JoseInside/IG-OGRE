@@ -5,7 +5,6 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 {
 	node = n;
 
-
 	ent = n->getCreator()->createEntity("entSinbad", "Sinbad.mesh");
 
 	// finally something to render
@@ -18,8 +17,10 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 
 	ent->setQueryFlags(-1);
 	animState = ent->getAnimationState("RunBase");
+	//animState = ent->getAnimationState("animKnot");
 	animState->setLoop(true);
 	animState->setEnabled(true);
+
 
 
 	//PARA PRACTICAR
@@ -38,4 +39,11 @@ SinbadMan::~SinbadMan()
 
 void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {
 	animState->addTime(evt.timeSinceLastFrame);
+}
+
+
+void SinbadMan::WalkingAnimation(){
+
+
+
 }

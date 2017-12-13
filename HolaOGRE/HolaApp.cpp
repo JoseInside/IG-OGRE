@@ -95,7 +95,7 @@ void HolaApp::setupScene(void)
   Light* light = scnMgr->createLight("Light");
   light->setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y); // !!! opngl <-> dirección a la fuente de luz
   lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-  lightNode->setPosition(0, 0, 100);
+  lightNode->setPosition(0, 100, 0);
   lightNode->attachObject(light);
 
   // also need to tell where we are
@@ -110,6 +110,7 @@ void HolaApp::setupScene(void)
   cam->setFarClipDistance(10000);
   cam->setAutoAspectRatio(true);
 
+
   //cam->setPolygonMode(Ogre::PM_WIREFRAME);  // en material
   camNode->attachObject(cam);
 
@@ -120,10 +121,45 @@ void HolaApp::setupScene(void)
   addInputListener(camMng);
   camMng->setStyle(OgreBites::CS_ORBIT);
 
+
   //Sinbad
   Ogre::SceneNode*node = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
   SinbadMan* aux = new SinbadMan(node);
   vecObjMan.push_back(aux);
+  /*
+  float duracion = 4.0f;
+  Ogre::Vector3 keyframePos = { 0, 0, 0 };
+  float tamDesplazamiento = 2.0f;
+  
+  //WalkingAnimation
+  Animation * animation = scnMgr->createAnimation("animKnot", duracion);
+  NodeAnimationTrack * track = animation->createNodeTrack(0);
+  track->setAssociatedNode(node);
+
+  Real longitudPaso = duracion / 4.0;
+
+
+  TransformKeyFrame * kf;; // 5 keyFrames: origen(0), arriba, origen, abajo, origen(4)
+  kf = track->createNodeKeyFrame(longitudPaso * 0); // Keyframe 0: origen.
+  kf->setTranslate(keyframePos); // Origen: Vector3
+
+  kf = track->createNodeKeyFrame(longitudPaso * 1); // Keyframe 1: arriba.
+  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento;
+  kf->setTranslate(keyframePos); // Arriba
+  // Keyframe 2: origen. ….
+  kf = track->createNodeKeyFrame(longitudPaso * 3); // Keyframe 3: abajo.
+  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento * -2;
+  kf->setTranslate(keyframePos); // Abajo
+  kf = track->createNodeKeyFrame(longitudPaso * 4); // Keyframe 4: origen.
+  keyframePos += Ogre::Vector3::UNIT_Y * tamDesplazamiento;
+  kf->setTranslate(keyframePos); // Origen.
+
+  AnimationState * animationState = scnMgr->createAnimationState("animKnot");
+  animationState->setLoop(true);
+  animation->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+  animationState->setEnabled(true);
+  */
+
 
   //Textura del plano (reflejo)
   TexturePtr rttTex = TextureManager::getSingleton().createManual(
@@ -145,6 +181,7 @@ void HolaApp::setupScene(void)
   PanelMan* aux2 = new PanelMan(nodePlane, rttTex);
   vecObjMan.push_back(aux2);
 
+
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);
   rayScnQuery->setQueryMask(MY_QUERY_MASK);
@@ -155,3 +192,9 @@ void HolaApp::setupScene(void)
 
 }
 
+
+void HolaApp::WalkingAnimation(){
+
+	
+
+}
