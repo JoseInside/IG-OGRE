@@ -11,8 +11,8 @@ public:
 	bool mousePicking(const OgreBites::MouseButtonEvent& evt) { return true; }
 	void frameRendered(const Ogre::FrameEvent & evt) {  }
 private:
-	OgreBites::InputListener* list = new OgreBites::InputListener();
-	Ogre::SceneNode*node;
+	//OgreBites::InputListener* list = new OgreBites::InputListener();
+	//Ogre::SceneNode*node;
 	Ogre::SceneNode*camNode;
 	Ogre::Entity* ent;
 	Ogre::Camera* camRef;

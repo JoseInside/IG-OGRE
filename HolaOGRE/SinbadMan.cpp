@@ -4,22 +4,26 @@ using namespace Ogre;
 SinbadMan::SinbadMan(Ogre::SceneNode*n)
 {
 	node = n;
-
-	ent = n->getCreator()->createEntity("entSinbad", "Sinbad.mesh");
+	list = new OgreBites::InputListener();
+	sinbad = n->getCreator()->createEntity("entSinbad", "Sinbad.mesh");
 
 	// finally something to render
 	node->setPosition(0, 25, 50); // es mejor mover a sinbad antes que mover el plano, ya que el reflejo se jode
 	node->scale(5, 5, 5);
-	//node->showBoundingBox(true);
-	//node->roll(Ogre::Degree(-45));
-	node->attachObject(ent);
+	node->attachObject(sinbad);
+
 	MyApplicationContext::addInputListener(list);
 	
-	ent2 = n->getCreator()->createEntity("sword", "Sword.mesh");
-	ent->attachObjectToBone("Handle.L", ent2);
-	ent->setQueryFlags(-1);
-	
-	animState = ent->getAnimationState("RunBase");
+	//ESPADA MANO IZQUIERDA
+	espadaL = n->getCreator()->createEntity("swordL", "Sword.mesh");
+	sinbad->attachObjectToBone("Handle.L", espadaL);
+
+	//ESPADA MANO DERECHA
+	espadaR = n->getCreator()->createEntity("swordR", "Sword.mesh");
+	sinbad->attachObjectToBone("Handle.R", espadaR);
+	sinbad->setQueryFlags(-1);
+
+	animState = sinbad->getAnimationState("RunBase");
 	animState->setLoop(true);
 	animState->setEnabled(true);
 

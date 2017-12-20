@@ -8,14 +8,15 @@ class ObjectMan
 {
 public:
 
-	ObjectMan(Ogre::SceneNode* sn = nullptr){ nodo = sn; };
+	ObjectMan(Ogre::SceneNode* sn = nullptr){ node = sn; };
 	virtual ~ObjectMan(){};
 
 	virtual bool mousePicking(const OgreBites::MouseButtonEvent& evt) = 0;
 	virtual void frameRendered(const Ogre::FrameEvent & evt) = 0;
 protected:
-	Ogre::SceneNode* nodo; // nodo->getCreator() 
+	Ogre::SceneNode* node; // nodo->getCreator() 
 	Ogre::RenderTexture* renderTexture;
+	OgreBites::InputListener* list;
 };
 
 #endif

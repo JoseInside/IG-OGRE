@@ -11,7 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BombMan.cpp" />
+    <ClCompile Include="CameraMan.cpp" />
     <ClCompile Include="HolaApp.cpp" />
+    <ClCompile Include="KnotFlyMan.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyApplicationContext.cpp" />
     <ClCompile Include="PanelMan.cpp" />
@@ -19,7 +22,10 @@
     <ClCompile Include="SinbadMan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BombMan.h" />
+    <ClInclude Include="CameraMan.h" />
     <ClInclude Include="HolaApp.h" />
+    <ClInclude Include="KnotFlyMan.h" />
     <ClInclude Include="MyApplicationContext.h" />
     <ClInclude Include="ObjectMan.h" />
     <ClInclude Include="PanelMan.h" />

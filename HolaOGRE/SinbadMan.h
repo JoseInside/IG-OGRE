@@ -12,10 +12,11 @@ public:
 	void frameRendered(const Ogre::FrameEvent & evt);
 private:
 	
-	OgreBites::InputListener* list = new OgreBites::InputListener();
-	Ogre::SceneNode*node;
-	Ogre::Entity* ent;
-	Ogre::Entity* ent2;
+	//OgreBites::InputListener* list =  new OgreBites::InputListener();
+	//Ogre::SceneNode*node;
+	Ogre::Entity* sinbad;
+	Ogre::Entity* espadaL;
+	Ogre::Entity* espadaR;
 	Ogre::AnimationState* animState;	//MOVER PIERNAS
 	Ogre::AnimationState* animState2;	//ANDAR
 	Ogre::Animation* animation;

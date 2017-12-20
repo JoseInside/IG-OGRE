@@ -123,9 +123,10 @@ void HolaApp::setupScene(void)
 
 
   //Sinbad
-  Ogre::SceneNode*node = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
-  SinbadMan* aux = new SinbadMan(node);
+  Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
+  SinbadMan* aux = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(aux);
+
 
 
   //Textura del plano (reflejo)
@@ -148,6 +149,13 @@ void HolaApp::setupScene(void)
   PanelMan* aux2 = new PanelMan(nodePlane, rttTex, camNode);
   vecObjMan.push_back(aux2);
 
+  Ogre::SceneNode*nodeKnot = scnMgr->getRootSceneNode()->createChildSceneNode("nKnotFly");
+  KnotFlyMan* newObj = new KnotFlyMan(nodeKnot);
+  vecObjMan.push_back(newObj);
+
+  Ogre::SceneNode*nodeBomb = scnMgr->getRootSceneNode()->createChildSceneNode("nBomb");
+  BombMan* newObj2 = new BombMan(nodeBomb);
+  vecObjMan.push_back(newObj2);
 
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);

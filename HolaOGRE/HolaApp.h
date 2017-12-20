@@ -6,6 +6,8 @@
 #include <OgreCameraMan.h>
 #include "ObjectMan.h"
 #include "SinbadMan.h"
+#include "BombMan.h"
+#include "KnotFlyMan.h"
 #include "PanelMan.h"
 
 class HolaApp :

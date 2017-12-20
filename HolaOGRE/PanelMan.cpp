@@ -4,6 +4,7 @@ using namespace Ogre;
 PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN)
 {
 	node = n;
+	list = new OgreBites::InputListener();
 	rttTex = r;
 	camNode = camN;
 
