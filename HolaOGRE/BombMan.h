@@ -16,6 +16,14 @@ public:
 private:
 
 	Ogre::Entity* bomb;
+	Ogre::ParticleSystem* smoke;
+	Ogre::Vector3 keyframePos;
+	Ogre::Vector3 escalado;
+	float duracion = 4.0f;
+	float tamDesplazamiento = 160.0f;
+	Ogre::Real longitudPaso = duracion / 4.0;
+
+	void smokeAnimation(Ogre::NodeAnimationTrack * track);
 };
 
 #endif

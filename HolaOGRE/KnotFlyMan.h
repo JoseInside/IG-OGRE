@@ -10,7 +10,7 @@ public:
 	virtual ~KnotFlyMan();
 
 	bool mousePicking(const OgreBites::MouseButtonEvent& evt) { return true; }
-	void frameRendered(const Ogre::FrameEvent & evt) {  }
+	void frameRendered(const Ogre::FrameEvent & evt);
 
 
 private:

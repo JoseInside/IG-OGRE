@@ -16,7 +16,7 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 	
 	//ESPADA MANO IZQUIERDA
 	espadaL = n->getCreator()->createEntity("swordL", "Sword.mesh");
-	sinbad->attachObjectToBone("Handle.L", espadaL);
+	sinbad->attachObjectToBone("Sheath.L", espadaL);
 
 	//ESPADA MANO DERECHA
 	espadaR = n->getCreator()->createEntity("swordR", "Sword.mesh");
@@ -27,13 +27,13 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 	animState->setLoop(true);
 	animState->setEnabled(true);
 
-	animation = n->getCreator()->createAnimation("animKnot", duracion);
+	animation = n->getCreator()->createAnimation("animSinbad", duracion);
 	NodeAnimationTrack * track = animation->createNodeTrack(0);
 	track->setAssociatedNode(node);
 
 	WalkingAnimation(track);
 
-	animState2 = n->getCreator()->createAnimationState("animKnot");
+	animState2 = n->getCreator()->createAnimationState("animSinbad");
 	animState2->setLoop(true);
 	animState2->setEnabled(true);
 }

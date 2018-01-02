@@ -149,7 +149,10 @@ void HolaApp::setupScene(void)
   PanelMan* aux2 = new PanelMan(nodePlane, rttTex, camNode);
   vecObjMan.push_back(aux2);
 
-  Ogre::SceneNode*nodeKnot = scnMgr->getRootSceneNode()->createChildSceneNode("nKnotFly");
+  //Creamos el nodo en referencia a Sinbad
+  SceneNode * nodeKnot = scnMgr->getEntity("entSinbad")->getParentSceneNode()->createChildSceneNode("nKnotFly");
+  nodeKnot->setInheritOrientation(false);
+  //Ogre::SceneNode*nodeKnot = scnMgr->getRootSceneNode()->createChildSceneNode("nKnotFly");
   KnotFlyMan* newObj = new KnotFlyMan(nodeKnot);
   vecObjMan.push_back(newObj);
 
