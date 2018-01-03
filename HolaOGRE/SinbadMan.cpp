@@ -15,27 +15,37 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 	MyApplicationContext::addInputListener(list);
 	
 	//ESPADA MANO IZQUIERDA
-	espadaL = n->getCreator()->createEntity("swordL", "Sword.mesh");
+	espadaL = node->getCreator()->createEntity("swordL", "Sword.mesh");
 	sinbad->attachObjectToBone("Sheath.L", espadaL);
 
 	//ESPADA MANO DERECHA
-	espadaR = n->getCreator()->createEntity("swordR", "Sword.mesh");
+	espadaR = node->getCreator()->createEntity("swordR", "Sword.mesh");
 	sinbad->attachObjectToBone("Handle.R", espadaR);
 	sinbad->setQueryFlags(-1);
 
-	animState = sinbad->getAnimationState("RunBase");
-	animState->setLoop(true);
-	animState->setEnabled(true);
+	animStateBase = sinbad->getAnimationState("RunBase");
+	animStateBase->setLoop(true);
+	animStateBase->setEnabled(true);
 
-	animation = n->getCreator()->createAnimation("animSinbad", duracion);
-	NodeAnimationTrack * track = animation->createNodeTrack(0);
+	animationWalking = node->getCreator()->createAnimation("animSinbadWalking", duracion);
+	track = animationWalking->createNodeTrack(0);
 	track->setAssociatedNode(node);
 
-	WalkingAnimation(track);
+	animationWalkingBomb = node->getCreator()->createAnimation("animGoToBomb", duracion);//Duracion total de la animación
+	track2 = animationWalkingBomb->createNodeTrack(0);//Camino 0
+	track2->setAssociatedNode(node);
 
-	animState2 = n->getCreator()->createAnimationState("animSinbad");
-	animState2->setLoop(true);
-	animState2->setEnabled(true);
+	animStateWalking = node->getCreator()->createAnimationState("animSinbadWalking");
+	animStateWalking->setLoop(true);
+	animStateWalking->setEnabled(true);
+
+	animStateGoToBomb = node->getCreator()->createAnimationState("animGoToBomb");
+	animStateGoToBomb->setEnabled(false);
+	animStateGoToBomb->setLoop(false);
+	
+	
+	
+	WalkingAnimation();
 }
 
 
@@ -46,12 +56,13 @@ SinbadMan::~SinbadMan()
 }
 
 void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {
-	animState->addTime(evt.timeSinceLastFrame);
-	animState2->addTime(evt.timeSinceLastFrame);
+	animStateBase->addTime(evt.timeSinceLastFrame);
+	animStateWalking->addTime(evt.timeSinceLastFrame);
 }
 
 
-void SinbadMan::WalkingAnimation(NodeAnimationTrack* track){
+//EN CUADRADO
+void SinbadMan::WalkingAnimation(){
 
 	TransformKeyFrame * kf;
 	keyframePos = { -90, 30, 80 };	//PUNTO INICIO
@@ -102,4 +113,44 @@ void SinbadMan::WalkingAnimation(NodeAnimationTrack* track){
 	kf->setTranslate(keyframePos); 
 	kf->setScale(escalado);
 
+}
+
+//HACIA LA BOMBA
+void SinbadMan::WalkingToBombAnimation(){
+
+	animStateWalking->setEnabled(false);	
+	animStateGoToBomb->setEnabled(true);
+
+	sinbad->detachObjectFromBone(espadaL);
+	sinbad->attachObjectToBone("Handle.L", espadaL);
+
+	TransformKeyFrame * kf;
+	SceneNode * bomba = node->getCreator()->getEntity("entBomb")->getParentSceneNode();	//CARGAR NODO BOMBA
+	keyframePos = node->getPosition();	//PUNTO INICIO
+	escalado = { 6, 6, 6 };
+	Vector3* rot = new Vector3(bomba->getPosition().x - node->getPosition().x, 0, bomba->getPosition().z - node->getPosition().z);
+	rot->normalise();
+
+	kf = track2->createNodeKeyFrame(longitudPaso * 0);
+	kf->setTranslate(keyframePos);
+	kf->setScale(escalado);
+	kf->setRotation(rot);
+
+	kf = track2->createNodeKeyFrame(longitudPaso * 1);
+	keyframePos += (bomba->getPosition().x, 20, bomba->getPosition().z) * tamDesplazamiento;	//LUGAR DE LA BOMBA
+	kf->setTranslate(keyframePos);
+	kf->setScale(escalado);
+	kf->setRotation(rot);
+
+}
+
+//MUERTO UNA VEZ TOCADA LA BOMBA
+void SinbadMan::Die(){
+
+	animStateBase->setEnabled(false);
+	animStateGoToBomb->setEnabled(false);
+
+	node->rotate(Vector3(1.0f, 0.0f, 0.0f), Radian(3.14 / 2));
+	node->rotate(Vector3(0.0f, 1.0f, 0.0f), Radian(3.14));
+	node->translate(Vector3(0.0f, -20.0f, 0.0f));
 }

@@ -10,19 +10,28 @@ public:
 
 	bool mousePicking(const OgreBites::MouseButtonEvent& evt) { return true; }
 	void frameRendered(const Ogre::FrameEvent & evt);
-private:
+
+	void WalkingAnimation();
+	void WalkingToBombAnimation();
+
+	void Die();
+
+
+protected:
 	
 	//OgreBites::InputListener* list =  new OgreBites::InputListener();
 	//Ogre::SceneNode*node;
 	Ogre::Entity* sinbad;
 	Ogre::Entity* espadaL;
 	Ogre::Entity* espadaR;
-	Ogre::AnimationState* animState;	//MOVER PIERNAS
-	Ogre::AnimationState* animState2;	//ANDAR
-	Ogre::Animation* animation;
+	Ogre::AnimationState* animStateBase;		//MOVER PIERNAS
+	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
+	Ogre::AnimationState* animStateGoToBomb;	//ANDAR HACIA LA BOMBA
+	Ogre::Animation* animationWalking;
+	Ogre::Animation * animationWalkingBomb;
 	
-	void WalkingAnimation(Ogre::NodeAnimationTrack * track);
-	
+	Ogre::NodeAnimationTrack * track;
+	Ogre::NodeAnimationTrack * track2;
 	float duracion = 4.0f;
 	float tamDesplazamiento = 160.0f;
 	Ogre::Real longitudPaso = duracion / 4.0;

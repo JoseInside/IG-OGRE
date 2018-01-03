@@ -124,8 +124,8 @@ void HolaApp::setupScene(void)
 
   //Sinbad
   Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
-  SinbadMan* aux = new SinbadMan(nodeSinbad);
-  vecObjMan.push_back(aux);
+  SinbadMan* sinbad = new SinbadMan(nodeSinbad);
+  vecObjMan.push_back(sinbad);
 
 
 
@@ -157,7 +157,7 @@ void HolaApp::setupScene(void)
   vecObjMan.push_back(newObj);
 
   Ogre::SceneNode*nodeBomb = scnMgr->getRootSceneNode()->createChildSceneNode("nBomb");
-  BombMan* newObj2 = new BombMan(nodeBomb);
+  BombMan* newObj2 = new BombMan(nodeBomb, sinbad);
   vecObjMan.push_back(newObj2);
 
   // scene queries
