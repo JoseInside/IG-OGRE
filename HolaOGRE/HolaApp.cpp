@@ -37,9 +37,9 @@ bool HolaApp::mousePressed(const OgreBites::MouseButtonEvent &  evt)
 	if (it != qryResult.end()) {
 
 			box = !box;
+			sinbad->mousePicking(evt);
 			it->movable->getParentSceneNode()->showBoundingBox(box);
 	}
-
   return true;
 }
 
@@ -124,17 +124,9 @@ void HolaApp::setupScene(void)
 
   //Sinbad
   Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
-  SinbadMan* sinbad = new SinbadMan(nodeSinbad);
+  /*SinbadMan**/ sinbad = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(sinbad);
-  /*evt.state = SDL_PRESSED;
-  if (sinbad->mousePicking(evt)){
-	  sinbad->animStateWalking->setEnabled(false);
-  }
-  else if (!sinbad->mousePicking(evt)){
-	  sinbad->animStateWalking->setEnabled(true);
-  }*/
-
-
+  
 
   //Textura del plano (reflejo)
   TexturePtr rttTex = TextureManager::getSingleton().createManual(

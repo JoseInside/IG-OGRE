@@ -156,7 +156,8 @@ void SinbadMan::Die(){
 }
 bool SinbadMan::mousePicking(const OgreBites::MouseButtonEvent& evt){
 
-
-
+	walk = !walk;
+	animStateWalking->setEnabled(walk);
+	animStateBase->setEnabled(walk);
 	return true;
 }

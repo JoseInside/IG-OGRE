@@ -44,7 +44,7 @@ BombMan::~BombMan()
 }
 
 bool BombMan::mousePicking(const OgreBites::MouseButtonEvent& evt){
-	if (!activated)
+	if (activated)
 	{
 		smoke->setEmitting(true);
 		_sinbad->WalkingToBombAnimation();

@@ -9,15 +9,16 @@ public:
 	virtual ~SinbadMan();
 
 	bool mousePicking(const OgreBites::MouseButtonEvent& evt);
+	
 	void frameRendered(const Ogre::FrameEvent & evt);
 
 	void WalkingAnimation();
 	void WalkingToBombAnimation();
 
 	void Die();
+	void stop();
 
 
-	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
 protected:
 	
 	//OgreBites::InputListener* list =  new OgreBites::InputListener();
@@ -25,6 +26,7 @@ protected:
 	Ogre::Entity* sinbad;
 	Ogre::Entity* espadaL;
 	Ogre::Entity* espadaR;
+	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
 	Ogre::AnimationState* animStateBase;		//MOVER PIERNAS
 	Ogre::AnimationState* animStateGoToBomb;	//ANDAR HACIA LA BOMBA
 	Ogre::Animation* animationWalking;
@@ -37,6 +39,9 @@ protected:
 	Ogre::Real longitudPaso = duracion / 4.0;
 	Ogre::Vector3 keyframePos;
 	Ogre::Vector3 escalado;
+
+	bool walk = true;
+
 };
 
 #endif
