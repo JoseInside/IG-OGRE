@@ -8,7 +8,7 @@ public:
 	SinbadMan(Ogre::SceneNode*n);
 	virtual ~SinbadMan();
 
-	bool mousePicking(const OgreBites::MouseButtonEvent& evt) { return true; }
+	bool mousePicking(const OgreBites::MouseButtonEvent& evt);
 	void frameRendered(const Ogre::FrameEvent & evt);
 
 	void WalkingAnimation();
@@ -17,6 +17,7 @@ public:
 	void Die();
 
 
+	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
 protected:
 	
 	//OgreBites::InputListener* list =  new OgreBites::InputListener();
@@ -25,7 +26,6 @@ protected:
 	Ogre::Entity* espadaL;
 	Ogre::Entity* espadaR;
 	Ogre::AnimationState* animStateBase;		//MOVER PIERNAS
-	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
 	Ogre::AnimationState* animStateGoToBomb;	//ANDAR HACIA LA BOMBA
 	Ogre::Animation* animationWalking;
 	Ogre::Animation * animationWalkingBomb;

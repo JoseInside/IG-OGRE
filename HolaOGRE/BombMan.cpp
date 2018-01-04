@@ -9,7 +9,7 @@ BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad)
 	node = n;
 	list = new OgreBites::InputListener();
 	bomb = n->getCreator()->createEntity("entBomb", "uv_sphere.mesh");
-	bomb->getSubEntity(0)->setMaterialName("KnotFly", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	bomb->getSubEntity(0)->setMaterialName("Bomb", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	node->setPosition(0, 5, 0); 
 	node->scale(0.03, 0.03, 0.03);
@@ -21,6 +21,7 @@ BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad)
 	bomb->setQueryFlags(1);	//SELECCIONABLE
 
 	smoke = node->getCreator()->createParticleSystem("smokeSys", "Smoke");
+
 	node->attachObject(smoke);
 	smoke->setEmitting(false);
 

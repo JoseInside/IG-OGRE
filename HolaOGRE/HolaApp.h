@@ -35,6 +35,8 @@ protected:
   Ogre::RaySceneQuery* rayScnQuery = nullptr;
   Ogre::Camera *cam = nullptr;
 
+  //OgreBites::MouseButtonEvent evt;
+
   static const Ogre::uint32 MY_QUERY_MASK = 1; // << 0;
   static const Ogre::uint32 ZERO_QUERY_MASK = 0;
 

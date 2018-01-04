@@ -1,0 +1,14 @@
+material Bomb{
+	technique //first technique
+	{
+		pass
+		{
+			
+			texture_unit // Texture unit 1
+			{
+				texture BumpyMetal.jpg
+			}
+		}
+	}
+
+}

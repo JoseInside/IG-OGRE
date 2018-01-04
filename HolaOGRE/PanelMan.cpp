@@ -30,10 +30,10 @@ PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN)
 	
 	 // material del plano
 	MyApplicationContext::addInputListener(list);
-	ent->getSubEntity(0)->getMaterial()->
+	/*ent->getSubEntity(0)->getMaterial()->
 		getTechnique(0)->getPass(0) ->
-		createTextureUnitState("RustedMetal.jpg");
-	//ent->getSubEntity(0)->setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		createTextureUnitState("RustedMetal.jpg");*/
+	ent->getSubEntity(0)->setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	node->attachObject(ent);
 
 	// Añadimos un puerto de vista al RenderTarget con la nueva cámara

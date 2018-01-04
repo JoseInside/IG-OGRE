@@ -154,3 +154,9 @@ void SinbadMan::Die(){
 	node->rotate(Vector3(0.0f, 1.0f, 0.0f), Radian(3.14));
 	node->translate(Vector3(0.0f, -20.0f, 0.0f));
 }
+bool SinbadMan::mousePicking(const OgreBites::MouseButtonEvent& evt){
+
+
+
+	return true;
+}

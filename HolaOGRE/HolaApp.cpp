@@ -126,6 +126,13 @@ void HolaApp::setupScene(void)
   Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
   SinbadMan* sinbad = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(sinbad);
+  /*evt.state = SDL_PRESSED;
+  if (sinbad->mousePicking(evt)){
+	  sinbad->animStateWalking->setEnabled(false);
+  }
+  else if (!sinbad->mousePicking(evt)){
+	  sinbad->animStateWalking->setEnabled(true);
+  }*/
 
 
 

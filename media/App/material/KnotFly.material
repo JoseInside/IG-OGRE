@@ -3,7 +3,8 @@ material KnotFly{
 	{
 		pass
 		{
-			texture_unit // Texture unit 0
+			
+			texture_unit // Texture unit 1
 			{
 				texture MtlPlat2.jpg
 			}
