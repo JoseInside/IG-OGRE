@@ -22,10 +22,14 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	sinbad->attachObjectToBone("Handle.R", espadaR);
 	
 	
-
+	//MOVER PIERNAS
 	animStateBase = sinbad->getAnimationState("RunBase");
 	animStateBase->setLoop(true);
 	animStateBase->setEnabled(true);
+	//MOOVER BRAZOS
+	animStateTop = sinbad->getAnimationState("RunTop");
+	animStateTop->setLoop(true);
+	animStateTop->setEnabled(true);
 
 	animationWalking = node->getCreator()->createAnimation("animSinbadWalking", duracion);
 	track = animationWalking->createNodeTrack(0);
@@ -43,7 +47,10 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	animStateGoToBomb->setEnabled(false);
 	animStateGoToBomb->setLoop(false);
 	
-	WalkingAnimation();
+	
+		WalkingAnimation();
+
+	
 }
 
 
@@ -53,8 +60,12 @@ SinbadMan::~SinbadMan()
 }
 
 void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {
-	animStateBase->addTime(evt.timeSinceLastFrame);
-	animStateWalking->addTime(evt.timeSinceLastFrame);
+	if (walk){
+		animStateTop->addTime(evt.timeSinceLastFrame);
+		animStateBase->addTime(evt.timeSinceLastFrame);
+		animStateWalking->addTime(evt.timeSinceLastFrame);
+	}
+
 }
 
 
@@ -138,6 +149,7 @@ void SinbadMan::WalkingToBombAnimation(){
 	kf->setTranslate(keyframePos);
 	kf->setScale(escalado);
 	kf->setRotation(rot);
+	
 
 }
 

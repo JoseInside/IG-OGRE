@@ -126,7 +126,7 @@ void HolaApp::setupScene(void)
 
   //Sinbad
   Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
-  /*SinbadMan**/ sinbad = new SinbadMan(nodeSinbad);
+  SinbadMan* sinbad = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(sinbad);
   
 

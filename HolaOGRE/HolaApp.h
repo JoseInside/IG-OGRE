@@ -34,7 +34,8 @@ protected:
   OgreBites::CameraMan* camMng = nullptr;
   Ogre::RaySceneQuery* rayScnQuery = nullptr;
   Ogre::Camera *cam = nullptr;
-  SinbadMan* sinbad;
+
+
 
 
   static const Ogre::uint32 MY_QUERY_MASK = 1; // << 0;

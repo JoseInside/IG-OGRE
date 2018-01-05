@@ -27,6 +27,7 @@ protected:
 	Ogre::Entity* espadaR;
 	Ogre::AnimationState* animStateWalking;		//ANDAR EN CUADRADO
 	Ogre::AnimationState* animStateBase;		//MOVER PIERNAS
+	Ogre::AnimationState* animStateTop;			//MOVER BRAZOS
 	Ogre::AnimationState* animStateGoToBomb;	//ANDAR HACIA LA BOMBA
 	Ogre::Animation* animationWalking;
 	Ogre::Animation * animationWalkingBomb;
