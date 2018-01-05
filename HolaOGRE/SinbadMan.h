@@ -41,6 +41,7 @@ protected:
 	Ogre::Vector3 escalado;
 
 	bool walk = true;
+	bool goToBomb = false;
 
 };
 

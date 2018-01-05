@@ -129,6 +129,9 @@ void HolaApp::setupScene(void)
   SinbadMan* sinbad = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(sinbad);
   
+  Ogre::SceneNode*nodeBomb = scnMgr->getRootSceneNode()->createChildSceneNode("nBomb");
+  BombMan* newObj2 = new BombMan(nodeBomb, sinbad);
+  vecObjMan.push_back(newObj2);
 
   //Textura del plano (reflejo)
   TexturePtr rttTex = TextureManager::getSingleton().createManual(
@@ -157,16 +160,9 @@ void HolaApp::setupScene(void)
   KnotFlyMan* newObj = new KnotFlyMan(nodeKnot);
   vecObjMan.push_back(newObj);
 
-  Ogre::SceneNode*nodeBomb = scnMgr->getRootSceneNode()->createChildSceneNode("nBomb");
-  BombMan* newObj2 = new BombMan(nodeBomb, sinbad);
-  vecObjMan.push_back(newObj2);
-
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);
   rayScnQuery->setQueryMask(MY_QUERY_MASK);
   rayScnQuery->setSortByDistance(true);
-
-  
-
 
 }
