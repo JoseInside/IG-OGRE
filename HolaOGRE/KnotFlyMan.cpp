@@ -2,7 +2,7 @@
 
 using namespace Ogre;
 
-KnotFlyMan::KnotFlyMan(Ogre::SceneNode*n)
+KnotFlyMan::KnotFlyMan(Ogre::SceneNode*n) : ObjectMan(n)
 {
 	node = n;
 	list = new OgreBites::InputListener();
@@ -18,7 +18,7 @@ KnotFlyMan::KnotFlyMan(Ogre::SceneNode*n)
 	node->attachObject(knotFly);
 
 
-	MyApplicationContext::addInputListener(list);
+	//MyApplicationContext::addInputListener(list);
 
 	knotFly->setQueryFlags(-1);
 }
@@ -26,7 +26,7 @@ KnotFlyMan::KnotFlyMan(Ogre::SceneNode*n)
 
 KnotFlyMan::~KnotFlyMan()
 {
-	MyApplicationContext::removeInputListener(list);
+	//MyApplicationContext::removeInputListener(list);
 }
 
 void KnotFlyMan::frameRendered(const Ogre::FrameEvent & evt) {

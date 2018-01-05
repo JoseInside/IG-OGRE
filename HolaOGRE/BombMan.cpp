@@ -2,12 +2,12 @@
 
 using namespace Ogre;
 
-BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad)
+BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad) : ObjectMan(n)
 {
 
 	_sinbad = sinbad;
 	node = n;
-	list = new OgreBites::InputListener();
+	//list = new OgreBites::InputListener();
 	bomb = n->getCreator()->createEntity("entBomb", "uv_sphere.mesh");
 	bomb->getSubEntity(0)->setMaterialName("Bomb", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
@@ -16,7 +16,7 @@ BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad)
 	node->attachObject(bomb);
 
 	activated = false;
-	MyApplicationContext::addInputListener(list);
+	//MyApplicationContext::addInputListener(list);
 
 	bomb->setQueryFlags(1);	//SELECCIONABLE
 
@@ -40,7 +40,7 @@ BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad)
 
 BombMan::~BombMan()
 {
-	MyApplicationContext::removeInputListener(list);
+	//MyApplicationContext::removeInputListener(list);
 }
 
 bool BombMan::mousePicking(const OgreBites::MouseButtonEvent& evt){

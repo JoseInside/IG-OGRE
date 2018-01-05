@@ -35,10 +35,12 @@ bool HolaApp::mousePressed(const OgreBites::MouseButtonEvent &  evt)
 	RaySceneQueryResult::iterator it = qryResult.begin();
 	
 	if (it != qryResult.end()) {
-
-			box = !box;
-			sinbad->mousePicking(evt);
-			it->movable->getParentSceneNode()->showBoundingBox(box);
+			//box = !box;
+			//sinbad->mousePicking(evt);
+			//it->movable->getParentSceneNode()->showBoundingBox(box);
+			UserControl* pCtrl = any_cast<UserControl*>(it->movable ->
+				getUserObjectBindings().getUserAny());
+			pCtrl->getControl()->mousePicking(evt);
 	}
   return true;
 }

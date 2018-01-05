@@ -1,7 +1,7 @@
 #include "SinbadMan.h"
 
 using namespace Ogre;
-SinbadMan::SinbadMan(Ogre::SceneNode*n)
+SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 {
 	node = n;
 	list = new OgreBites::InputListener();
@@ -11,8 +11,6 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 	node->setPosition(0, 25, 50); // es mejor mover a sinbad antes que mover el plano, ya que el reflejo se jode
 	node->scale(5, 5, 5);
 	node->attachObject(sinbad);
-
-	MyApplicationContext::addInputListener(list);
 	
 	//ESPADA MANO IZQUIERDA
 	espadaL = node->getCreator()->createEntity("swordL", "Sword.mesh");
@@ -51,8 +49,7 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n)
 
 SinbadMan::~SinbadMan()
 {
-	MyApplicationContext::removeInputListener(list);
-	
+
 }
 
 void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {

@@ -2,8 +2,7 @@
 #define __KnotFlyMan_H__
 #include "ObjectMan.h"
 
-class KnotFlyMan :
-	public MyApplicationContext, public ObjectMan
+class KnotFlyMan : public ObjectMan
 {
 public:
 	KnotFlyMan(Ogre::SceneNode*n);

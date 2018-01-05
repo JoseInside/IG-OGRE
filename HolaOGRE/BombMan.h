@@ -3,8 +3,7 @@
 #include "ObjectMan.h"
 #include "SinbadMan.h"
 
-class BombMan :
-	public MyApplicationContext, public ObjectMan
+class BombMan : public ObjectMan
 {
 public:
 	BombMan(Ogre::SceneNode*n, SinbadMan* sinbad);
@@ -14,7 +13,7 @@ public:
 	virtual void frameRendered(const Ogre::FrameEvent & evt);
 
 
-private:
+protected:
 	bool activated;	//Trigger de la bomba
 	SinbadMan* _sinbad;
 	Ogre::Entity* bomb;

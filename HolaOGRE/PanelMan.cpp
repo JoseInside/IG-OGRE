@@ -1,7 +1,7 @@
 #include "PanelMan.h"
 
 using namespace Ogre;
-PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN)
+PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN) : ObjectMan(n)
 {
 	node = n;
 	list = new OgreBites::InputListener();
