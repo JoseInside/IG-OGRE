@@ -5,17 +5,17 @@ using namespace Ogre;
 KnotFlyMan::KnotFlyMan(Ogre::SceneNode*n) : ObjectMan(n)
 {
 	node = n;
-	list = new OgreBites::InputListener();
+	//list = new OgreBites::InputListener();
 	knotFly = n->getCreator()->createEntity("entKnotFly", "knot.mesh");
 	knotFly->getSubEntity(0)->setMaterialName("KnotFly", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	/*knotFly->getSubEntity(0)->getMaterial()->
 		getTechnique(0)->getPass(0) ->
 		createTextureUnitState("App/KnotFly/MtlPlat2.jpg");*/
-
+	setObjMan(knotFly);
 	//EN RELACIÓN A SINBAD
 	node->setPosition(1, 4, -2);
 	node->scale(0.01, 0.01, 0.01);
-	node->attachObject(knotFly);
+	//node->attachObject(knotFly);
 
 
 	//MyApplicationContext::addInputListener(list);

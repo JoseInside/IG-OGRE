@@ -5,7 +5,6 @@
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
 
-#include "MyApplicationContext.h"
 
 class ObjectMan; // declaración adelantada
 
@@ -37,6 +36,7 @@ public:
 
 	virtual bool mousePicking(const OgreBites::MouseButtonEvent& evt){ return true; };
 	virtual void frameRendered(const Ogre::FrameEvent & evt){};
+	
 	virtual void setObjMan(Ogre::MovableObject* mObj)
 		{
 

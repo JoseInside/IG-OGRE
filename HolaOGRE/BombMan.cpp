@@ -10,10 +10,10 @@ BombMan::BombMan(Ogre::SceneNode*n, SinbadMan* sinbad) : ObjectMan(n)
 	//list = new OgreBites::InputListener();
 	bomb = n->getCreator()->createEntity("entBomb", "uv_sphere.mesh");
 	bomb->getSubEntity(0)->setMaterialName("Bomb", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
+	setObjMan(bomb);
 	node->setPosition(0, 5, 0); 
 	node->scale(0.03, 0.03, 0.03);
-	node->attachObject(bomb);
+	//node->attachObject(bomb);
 
 	activated = false;
 	//MyApplicationContext::addInputListener(list);

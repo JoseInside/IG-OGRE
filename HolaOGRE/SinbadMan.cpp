@@ -4,13 +4,14 @@ using namespace Ogre;
 SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 {
 	node = n;
-	list = new OgreBites::InputListener();
+	//list = new OgreBites::InputListener();
 	sinbad = n->getCreator()->createEntity("entSinbad", "Sinbad.mesh");
-
+	setObjMan(sinbad);
 	// finally something to render
 	node->setPosition(0, 25, 50); // es mejor mover a sinbad antes que mover el plano, ya que el reflejo se jode
 	node->scale(5, 5, 5);
-	node->attachObject(sinbad);
+	//node->attachObject(sinbad);
+	sinbad->setQueryFlags(1);
 	
 	//ESPADA MANO IZQUIERDA
 	espadaL = node->getCreator()->createEntity("swordL", "Sword.mesh");
@@ -19,7 +20,8 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	//ESPADA MANO DERECHA
 	espadaR = node->getCreator()->createEntity("swordR", "Sword.mesh");
 	sinbad->attachObjectToBone("Handle.R", espadaR);
-	sinbad->setQueryFlags(-1);
+	
+	
 
 	animStateBase = sinbad->getAnimationState("RunBase");
 	animStateBase->setLoop(true);
@@ -40,8 +42,6 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	animStateGoToBomb = node->getCreator()->createAnimationState("animGoToBomb");
 	animStateGoToBomb->setEnabled(false);
 	animStateGoToBomb->setLoop(false);
-	
-	
 	
 	WalkingAnimation();
 }

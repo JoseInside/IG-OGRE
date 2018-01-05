@@ -4,7 +4,7 @@ using namespace Ogre;
 PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN) : ObjectMan(n)
 {
 	node = n;
-	list = new OgreBites::InputListener();
+	//list = new OgreBites::InputListener();
 	rttTex = r;
 	camNode = camN;
 
@@ -34,8 +34,8 @@ PanelMan::PanelMan(Ogre::SceneNode*n, Ogre::TexturePtr r, Ogre::SceneNode*camN) 
 		getTechnique(0)->getPass(0) ->
 		createTextureUnitState("RustedMetal.jpg");*/
 	ent->getSubEntity(0)->setMaterialName("panel", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	node->attachObject(ent);
-
+	//node->attachObject(ent);
+	setObjMan(ent);
 	// Añadimos un puerto de vista al RenderTarget con la nueva cámara
 	RenderTexture* renderTexture = rttTex->getBuffer()->getRenderTarget();
 	Viewport * v = renderTexture->addViewport(camRef);
