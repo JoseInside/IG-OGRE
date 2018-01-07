@@ -15,7 +15,7 @@ public:
 	void WalkingToBombAnimation();
 
 	void Die();
-	void stop();
+	void WaterDragAnimation();
 
 
 protected:
@@ -31,6 +31,10 @@ protected:
 	Ogre::AnimationState* animStateGoToBomb;	//ANDAR HACIA LA BOMBA
 	Ogre::Animation* animationWalking;
 	Ogre::Animation * animationWalkingBomb;
+
+	Ogre::AnimationState* animStateWater;
+	Ogre::Animation* animationStreamWater;
+	Ogre::NodeAnimationTrack* track3;
 	
 	Ogre::NodeAnimationTrack * track;
 	Ogre::NodeAnimationTrack * track2;
@@ -42,6 +46,7 @@ protected:
 
 	bool walk = true;
 	bool goToBomb = false;
+	bool die = false;
 
 };
 

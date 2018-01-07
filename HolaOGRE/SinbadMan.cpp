@@ -26,14 +26,11 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	animStateBase = sinbad->getAnimationState("RunBase");
 	animStateBase->setLoop(true);
 	animStateBase->setEnabled(true);
-	//MOOVER BRAZOS
+	//MOVER BRAZOS
 	animStateTop = sinbad->getAnimationState("RunTop");
 	animStateTop->setLoop(true);
 	animStateTop->setEnabled(true);
 
-	animationWalking = node->getCreator()->createAnimation("animSinbadWalking", duracion);
-	track = animationWalking->createNodeTrack(0);
-	track->setAssociatedNode(node);
 
 
 	WalkingAnimation();
@@ -42,6 +39,7 @@ SinbadMan::SinbadMan(Ogre::SceneNode*n) : ObjectMan(n)
 	animStateWalking->setLoop(true);
 	animStateWalking->setEnabled(true);
 
+	
 
 	
 }
@@ -58,8 +56,13 @@ void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {
 			animStateGoToBomb->addTime(evt.timeSinceLastFrame);
 			animStateBase->addTime(evt.timeSinceLastFrame);
 		}
-		else
+		else{
 			Die();
+			//WaterDragAnimation();
+			animStateWater->addTime(evt.timeSinceLastFrame);
+
+		}
+
 	}
 	else if (walk){
 		animStateTop->addTime(evt.timeSinceLastFrame);
@@ -75,9 +78,13 @@ void SinbadMan::frameRendered(const Ogre::FrameEvent & evt) {
 //EN CUADRADO
 void SinbadMan::WalkingAnimation(){
 
+	animationWalking = node->getCreator()->createAnimation("animSinbadWalking", duracion);
+	track = animationWalking->createNodeTrack(0);
+	track->setAssociatedNode(node);
+
 	TransformKeyFrame * kf;
 	keyframePos = { -90, 30, 80 };	//PUNTO INICIO
-	escalado = { 5, 5, 5 };
+	escalado = { 6, 6, 6 };
 
 	kf = track->createNodeKeyFrame(longitudPaso * 0); 
 	keyframePos += Ogre::Vector3::UNIT_X* tamDesplazamiento;
@@ -146,7 +153,7 @@ void SinbadMan::WalkingToBombAnimation(){
 	SceneNode * bomba = node->getCreator()->getEntity("entBomb")->getParentSceneNode();	//CARGAR NODO BOMBA
 	keyframePos = node->getPosition();	//PUNTO INICIO
 	Real initialYPos = node->getPosition().y;
-	escalado = { 5, 5, 5 };
+	escalado = { 6, 6, 6 };
 	Vector3* rot = new Vector3(bomba->getPosition().x - node->getPosition().x, 0, bomba->getPosition().z - node->getPosition().z);
 	rot->normalise();
 	Quaternion quat = vistaSinbad.getRotationTo(*rot);
@@ -157,7 +164,7 @@ void SinbadMan::WalkingToBombAnimation(){
 	kf->setRotation(quat);
 
 	kf = track2->createNodeKeyFrame(duracion);
-	keyframePos = (bomba->getPosition().x, -25, bomba->getPosition().z);	//LUGAR DE LA BOMBA
+	keyframePos = (bomba->getPosition().x, 0, bomba->getPosition().z);	//LUGAR DE LA BOMBA
 	kf->setTranslate(keyframePos);
 	kf->setScale(escalado);
 	kf->setRotation(quat);
@@ -170,19 +177,64 @@ void SinbadMan::WalkingToBombAnimation(){
 
 //MUERTO UNA VEZ TOCADA LA BOMBA
 void SinbadMan::Die(){
+
+	die = true;//con esto no se volvera a mover una vez muerto si clickamos en el
 	walk = false;
 	goToBomb = false;
 	animStateBase->setEnabled(false);
 	animStateGoToBomb->setEnabled(false);
 
-	node->rotate(Vector3(1.0f, 0.0f, 0.0f), Radian(3.14 / 2));
+	/*node->rotate(Vector3(1.0f, 0.0f, 0.0f), Radian(3.14 / 2));
 	node->rotate(Vector3(0.0f, 1.0f, 0.0f), Radian(3.14));
-	node->translate(Vector3(0.0f, 1.0f, 0.0f));
+	node->translate(Vector3(0.0f, 1.0f, 0.0f));*/
+
+	
+	Ogre::Vector3 vectorDestino( 100,  0, 0);
+	Vector3 vistaSinbad(0, 0, 1);
+	Vector3* rot = new Vector3(0, 180, 0);
+	rot->normalise();
+	Quaternion quat = vistaSinbad.getRotationTo(*rot);
+
+	animationStreamWater = node->getCreator()->createAnimation("animDragSinbad", duracion);
+	track3 = animationStreamWater->createNodeTrack(0);
+	track3->setAssociatedNode(node);
+
+	Real longitudPaso = duracion / 2.0;
+	TransformKeyFrame * kf;
+	keyframePos = node->getPosition();
+	escalado = { 6, 6, 6 };
+
+	kf = track3->createNodeKeyFrame(0);
+	kf->setTranslate(keyframePos);
+	kf->setScale(escalado);
+	kf->setRotation(quat);
+
+	kf = track3->createNodeKeyFrame(duracion);
+	keyframePos += (vectorDestino);
+	kf->setTranslate(keyframePos);
+	kf->setRotation(quat);
+	//kf->setScale(escalado);
+
+	animStateWater = node->getCreator()->createAnimationState("animDragSinbad");
+	animStateWater->setEnabled(true);
+	animStateWater->setLoop(false);
+	
+	
 }
 bool SinbadMan::mousePicking(const OgreBites::MouseButtonEvent& evt){
 
-	walk = !walk;
-	animStateWalking->setEnabled(walk);
-	animStateBase->setEnabled(walk);
+	if (!die){ 
+		walk = !walk;
+		animStateWalking->setEnabled(walk);
+		animStateBase->setEnabled(walk);
+	}
+
 	return true;
+}
+void SinbadMan::WaterDragAnimation(){
+
+	
+
+	
+
 }
