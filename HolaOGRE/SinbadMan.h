@@ -46,7 +46,7 @@ protected:
 
 	bool walk = true;
 	bool goToBomb = false;
-	bool die = false;
+	bool dead = false;
 
 };
 

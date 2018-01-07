@@ -18,9 +18,15 @@ void HolaApp::frameRendered(const FrameEvent &  evt)
 bool HolaApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
   if (evt.keysym.sym == SDLK_ESCAPE)
-  
-    mRoot->queueEndRendering();
-  
+		mRoot->queueEndRendering();
+  else if (evt.keysym.sym == SDLK_t){
+	  pulsado = !pulsado;
+	  if (pulsado)
+		camMng->setTarget(nodeSinbad);
+	  else
+		  camMng->setTarget(scnMgr->getRootSceneNode());
+  }
+
  
   return true;
 }
@@ -111,21 +117,21 @@ void HolaApp::setupScene(void)
   cam->setNearClipDistance(1); 
   cam->setFarClipDistance(10000);
   cam->setAutoAspectRatio(true);
-
-
+  
   //cam->setPolygonMode(Ogre::PM_WIREFRAME);  // en material
   camNode->attachObject(cam);
-
+ 
   // and tell it to render into the main window
   Viewport* vp = getRenderWindow()->addViewport(cam);
 
   camMng = new OgreBites::CameraMan(camNode);
   addInputListener(camMng);
   camMng->setStyle(OgreBites::CS_ORBIT);
+  
 
 
   //Sinbad
-  Ogre::SceneNode*nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
+  nodeSinbad = scnMgr->getRootSceneNode()->createChildSceneNode("nSinbad");
   SinbadMan* sinbad = new SinbadMan(nodeSinbad);
   vecObjMan.push_back(sinbad);
   
@@ -133,6 +139,7 @@ void HolaApp::setupScene(void)
   BombMan* newObj2 = new BombMan(nodeBomb, sinbad);
   vecObjMan.push_back(newObj2);
 
+  camMng->setTarget(nodeSinbad);
   //Textura del plano (reflejo)
   TexturePtr rttTex = TextureManager::getSingleton().createManual(
 	  "texRtt",
