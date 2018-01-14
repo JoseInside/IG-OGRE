@@ -97,6 +97,7 @@ void HolaApp::setup(void)
   setupScene();
 }
 
+
 void HolaApp::setupScene(void)
 {
   // without light we would just get a black screen    
@@ -128,6 +129,14 @@ void HolaApp::setupScene(void)
   addInputListener(camMng);
   camMng->setStyle(OgreBites::CS_ORBIT);
   
+
+  //FONDO
+  scnMgr->setSkyPlane(true, Plane(Vector3::UNIT_Z, -20), "mandelbrot1", 1, 1, true, 0.0, 100, 100);
+
+
+  /*Ogre::ColourValue fadeColour(0.9, 0.9, 0.9);
+  mWindow->getViewport(0)->setBackgroundColour(fadeColour);
+  scnMgr->setFog(Ogre::FOG_EXP, fadeColour, 0.002);*/
 
 
   //Sinbad
@@ -171,5 +180,6 @@ void HolaApp::setupScene(void)
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);
   rayScnQuery->setQueryMask(MY_QUERY_MASK);
   rayScnQuery->setSortByDistance(true);
+
 
 }
