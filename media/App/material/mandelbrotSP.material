@@ -1,0 +1,42 @@
+vertex_program mandelbrotVS 
+{
+	source MandelbrotVS.txt // archivo
+	default_params // valores para las variables uniform
+	{
+		param_named_auto modelViewProjMat worldviewproj_matrix
+	}
+}
+
+fragment_program mandelbrotFS
+{
+	source MandelbrotFS.txt	// archivo
+	default_params // valores para la variable uniform
+	{
+		param_named InColor float4 0.5 0.5 1.0 1.0
+		param_named OutColor1 float4 0.5 0.25 1.0 1.0
+		param_named OutColor2 float4 1.0 0.5 0.25 1.0
+	}
+}
+
+material mandelbrotSP
+{
+	technique 
+	{
+		pass
+		{
+			depth_write off
+			vertex_program_ref MandelbrotVS
+			{ // params
+			}
+
+			fragment_program_ref MandelbrotFS
+			{ // params
+			}
+			
+			texture_unit // Texture unit 1
+			{
+				texture flare.png
+			}
+		}
+	}
+}

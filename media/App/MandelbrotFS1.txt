@@ -4,6 +4,10 @@ in vec2 vUv0; // out of vertex shader
 uniform vec4 InColor;
 uniform vec4 OutColor1;
 uniform vec4 OutColor2;
+
+uniform vec4 InColor2;
+uniform vec4 OutColor1;
+
 const int MaxIter = 500;
 out vec4 fFragColor;
 
@@ -15,6 +19,8 @@ void main() {
 	float r2 = 0.0;
 	int iter = 0;
 	float tempreal = 0.0;
+
+	//ALGORITMO MANDELBROT
 	while (iter < MaxIter && r2 < 4.0) {
 		tempreal = real;
 		real = (tempreal * tempreal) - (imag * imag) + Creal;

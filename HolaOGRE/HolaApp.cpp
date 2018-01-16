@@ -130,10 +130,6 @@ void HolaApp::setupScene(void)
   camMng->setStyle(OgreBites::CS_ORBIT);
   
 
-  //FONDO
-  scnMgr->setSkyPlane(true, Plane(Vector3::UNIT_Z, -20), "mandelbrot1", 1, 1, true, 0.0, 100, 100);
-
-
   /*Ogre::ColourValue fadeColour(0.9, 0.9, 0.9);
   mWindow->getViewport(0)->setBackgroundColour(fadeColour);
   scnMgr->setFog(Ogre::FOG_EXP, fadeColour, 0.002);*/
@@ -175,6 +171,11 @@ void HolaApp::setupScene(void)
   //Ogre::SceneNode*nodeKnot = scnMgr->getRootSceneNode()->createChildSceneNode("nKnotFly");
   KnotFlyMan* newObj = new KnotFlyMan(nodeKnot);
   vecObjMan.push_back(newObj);
+
+
+  //FONDO
+  scnMgr->setSkyPlane(true, Plane(Vector3::UNIT_Z, -100), "ejemploShadersE2", 1, 1, true, 0.0, 100, 100);
+
 
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);
