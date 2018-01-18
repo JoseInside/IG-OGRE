@@ -176,7 +176,7 @@ void HolaApp::setupScene(void)
 
 
   //FONDO
-  scnMgr->setSkyPlane(true, Plane(Vector3::UNIT_Z, -100), "mandelbrotSP", 1, 1, true, 0.0, 100, 100);
+  scnMgr->setSkyPlane(true, Plane(Vector3::UNIT_Z, -100), "mandelbrotSP", 1, 1, true, 2.0, 100, 100);
 
   // scene queries
   rayScnQuery ->setQueryTypeMask(SceneManager::ENTITY_TYPE_MASK);

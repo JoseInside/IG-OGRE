@@ -15,8 +15,8 @@ fragment_program mandelbrotFS glsl
 		param_named InColor float4 0.5 0.5 1.0 1.0
 		param_named OutColor1 float4 0.5 0.25 1.0 1.0
 		param_named OutColor2 float4 1.0 0.5 0.25 1.0
-		param_named_auto Tiempo time_0_1 10
-		param_named texturaFlare int 1
+		param_named_auto Tiempo sintime_0_1 50
+		param_named texturaFlare int 0
 
 	}
 }
@@ -35,17 +35,16 @@ material mandelbrotSP
 			fragment_program_ref mandelbrotFS
 			{ // params
 			}
+			
 			diffuse 0.5 0.5 0.5
-			texture_unit //Texture unit 1 (this is a multitextura pass)
+			texture_unit texturaFlare	//Texture unit 0
 			{
 				texture flare.png
 				//wave_xform scale_x sine 2.5 0.07 0.0 5.0
 				tex_address_mode clamp
 				filtering bilinear
 				colour_op modulate
-			}
-
-			
+			}			
 		}
 	}
 }
