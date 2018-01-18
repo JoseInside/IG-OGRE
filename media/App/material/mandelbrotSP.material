@@ -36,7 +36,7 @@ material mandelbrotSP
 			{ // params
 			}
 			
-			diffuse 0.5 0.5 0.5
+			
 			texture_unit texturaFlare	//Texture unit 0
 			{
 				texture flare.png
@@ -44,6 +44,7 @@ material mandelbrotSP
 				tex_address_mode clamp
 				filtering bilinear
 				colour_op modulate
+				diffuse 0.5 0.5 0.5
 			}			
 		}
 	}
