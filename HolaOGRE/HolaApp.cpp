@@ -145,7 +145,8 @@ void HolaApp::setupScene(void)
   BombMan* newObj2 = new BombMan(nodeBomb, sinbad);
   vecObjMan.push_back(newObj2);
 
-  camMng->setTarget(nodeSinbad);
+  //camMng->setTarget(nodeSinbad);
+  camMng->setTarget(scnMgr->getRootSceneNode());
   //Textura del plano (reflejo)
   TexturePtr rttTex = TextureManager::getSingleton().createManual(
 	  "texRtt",
